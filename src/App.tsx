@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Cart from "./components/Cart";
 import Footer from "./components/Foorter";
@@ -6,12 +7,13 @@ import HomePage from "./components/HomePage";
 
 
 export default function App() {
+  const [cartMneu, setCartMenu] = useState<boolean>(false)
   return (
     <ConteinerApp>
-      <Header/>
+      <Header setCartMenu={setCartMenu}/>
       <HomePage />
       <Footer/>
-      <Cart/>
+      {cartMneu === true? <Cart setCartMenu={setCartMenu}/> : "" }
     </ConteinerApp>
   );
 }

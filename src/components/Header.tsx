@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
+import React from "react";
 
-
-export default function Header() {
+interface SetProps  {
+    setCartMenu: React.Dispatch<React.SetStateAction<boolean>>
+}
+export default function Heade({setCartMenu}:SetProps) {
     return (
         <ConteinerHeader>
             <Logo>
                 <h1>MKS</h1>
                 <p>Sistemas</p>
             </Logo>
-            <Cart>
+            <Cart onClick={()=>setCartMenu(true)}>
                 <AiOutlineShoppingCart height={18} width={19}/>
                 <span>0</span>
             </Cart>

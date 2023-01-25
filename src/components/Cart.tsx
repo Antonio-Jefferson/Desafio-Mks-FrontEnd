@@ -2,12 +2,15 @@ import styled from "styled-components"
 import ProductCart from "./ProductCart"
 import { MdCancel } from "@react-icons/all-files/md/MdCancel"
 
-export default function Cart() {
+interface SetProps  {
+    setCartMenu: React.Dispatch<React.SetStateAction<boolean>>
+}
+export default function Cart({setCartMenu}:SetProps) {
     return (
         <ConteinerCart>
             <Top>
                 <p>Carrinho de compras</p>
-                <MdCancel fontSize={38} />
+                <MdCancel onClick={()=> setCartMenu(false)} fontSize={38} />
             </Top>
             <ProductList>
                 <ProductCart />
