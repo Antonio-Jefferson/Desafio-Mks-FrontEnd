@@ -1,12 +1,14 @@
 import styled from "styled-components"
 import { RiShoppingBag3Line } from "@react-icons/all-files/ri/RiShoppingBag3Line"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface ProdcutProps {
     product: {
         id: number
         name: string
         description: string
-        price: string
+        price: number
         photo: string
     }
 }
@@ -18,10 +20,10 @@ export default function Card(product: ProdcutProps) {
                     <img src={product.product.photo} alt={product.product.name} />
                 </Img>
                 <InfPrice>
-                    <p>{product.product.name}</p>
-                    <span>R${product.product.price}</span>
+                    <p>{product.product.name || <Skeleton/>}</p>
+                    <span>R${product.product.price || <Skeleton/>}</span>
                 </InfPrice>
-                <Description>{product.product.description}</Description>
+                <Description>{product.product.description || <Skeleton/>}</Description>
             </div>
 
             <AddCart>
@@ -40,7 +42,6 @@ const ConteinerCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 25px;
     div{
         padding: 8px;
     }

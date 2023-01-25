@@ -9,6 +9,8 @@ export default function Footer(){
 }
 
 const DivFooter = styled.div`
+    width: 100%;
+    position: absolute;
     text-align: center;
     height: 34px;
     background: #EEEEEE;
