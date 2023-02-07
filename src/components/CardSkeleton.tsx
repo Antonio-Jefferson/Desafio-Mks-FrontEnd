@@ -44,7 +44,6 @@ const Img = styled.div`
     img{
         width: 100%;
     }
-
 `
 const InfPrice = styled.div`
     display: flex;
@@ -77,7 +76,6 @@ const AddCart = styled.div`
     gap: 14px;
     background:#b6b6b6;
     border-radius: 0px 0px 8px 8px;
-
     font-weight: 600;
     font-size: 14px;
     color: #fff;

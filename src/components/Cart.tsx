@@ -1,26 +1,45 @@
 import styled from "styled-components"
 import ProductCart from "./ProductCart"
 import { MdCancel } from "@react-icons/all-files/md/MdCancel"
-
-interface SetProps  {
+import { useEffect, useState } from "react"
+interface Products{
+    id: number
+    name: string
+    description: string
+    price: number
+    photo: string
+  }
+interface SetProps {
     setCartMenu: React.Dispatch<React.SetStateAction<boolean>>
+    itensCart: number[]
+    setItensCart: React.Dispatch<React.SetStateAction<number[]>>
+    productsData:Products[]
 }
-export default function Cart({setCartMenu}:SetProps) {
+export default function Cart({ setCartMenu, itensCart, productsData }: SetProps) {
+    const [filterItens, setFilterItens] = useState<Products[]>([])
+    const [total, setTotal]= useState(0)
+    useEffect(() => {
+        const filtered = productsData.filter((item) => itensCart.includes(item.id));
+        setFilterItens(filtered);
+        filtered.forEach((item) => {
+            if (itensCart.includes(item.id)) {
+                setTotal(total + Number(item.price));
+            }
+        });
+      }, [itensCart, productsData]);
     return (
         <ConteinerCart>
             <Top>
                 <p>Carrinho de compras</p>
-                <MdCancel onClick={()=> setCartMenu(false)} fontSize={38} />
+                <MdCancel onClick={() => setCartMenu(false)} fontSize={38} />
             </Top>
             <ProductList>
-                <ProductCart />
-                <ProductCart />
-                <ProductCart />
+                {filterItens.map((item, id) => <ProductCart key={id} item={item} />)}
             </ProductList>
             <Footer>
                 <div>
                     <p>Total</p>
-                    <span>R$100</span>
+                    <span>R${total}</span>
                 </div>
                 <Finalize>
                     <h1>Finalizar Compra</h1>
@@ -63,7 +82,6 @@ const Footer = styled.div`
         justify-content: space-between;
         align-items: center;
         padding: 34px;
-
         font-weight: 700;
         font-size: 28px;
         color: #FFF;

@@ -14,7 +14,6 @@ const DivFooter = styled.div`
     text-align: center;
     height: 34px;
     background: #EEEEEE;
-
     font-weight: 400;
     font-size: 12px;
     padding: 9px;
